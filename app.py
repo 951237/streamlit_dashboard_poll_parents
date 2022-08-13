@@ -25,6 +25,7 @@ def get_csvfile():
 
 	# 데이터 전처리
 	df = df.dropna(subset=['학년']) 	# 학년 빈칸인 줄 삭제
+	df['만족도'] = df['만족도'].map(lambda x: int(x))	# 만족도 정수로 표시
 	df['학년'] = df['학년'].map(lambda x: x[0])		# 5학년 → 5 '학년'글자 삭제
 	df['반'] = df['반'].map(lambda x: x[0])			# 3반 → 3 	'반'글자 삭제
 	df['학년반'] = df['학년'] + df['반']
@@ -110,45 +111,73 @@ st.markdown("---")
 
 # st.dataframe(df_selection)		# 페이지에 데이터프레임 표시하기
 
-# 데이터 시각화 - 한년별 만족도
-grade_mean = (
-	df_selection.groupby("학년").mean().reset_index()
-)
+# 화면 분할 
+up_left, up_right = st.columns(2)
+with up_left:
+	# 만족도 현황
+	grouped_score = (
+		df_selection.groupby('만족도').size().reset_index()
+	)
+	grouped_score.columns = ['만족도', '인원']
 
-fig_grade_mean = px.bar(
-	grade_mean,
-	x = '학년',
-	y = '만족도',
-	title = "<b>학년별 만족도 결과</b>",
-	color_discrete_sequence=["#0083B8"] * len(grade_mean),
-	template="plotly_white"
-)
+	fig_grouped_score = px.bar(
+		grouped_score,
+		x = '만족도',
+		y = '인원',
+		title = "<b>만족도 현황</b>",
+		# color = 'country',
+		color_discrete_sequence=["#0083B8"] * len(grouped_score),
+		template="plotly_white"
+	)
 
-st.plotly_chart(fig_grade_mean)
+	st.plotly_chart(fig_grouped_score)
+with up_right:
+	# 워드클라우드
+	word_cloud = make_worcloud(df_selection)
 
-# 데이터 시각화 - 한년별 만족도
-classes_mean = (
-	df.groupby("학년반").mean().reset_index()
-)
+	fig = plt.figure()
+	# plt.title('학부모 응답 워드클라우드')
+	plt.imshow(word_cloud, interpolation="bilinear")
+	plt.axis("off")
+	plt.show()
+	st.pyplot(fig)
+ 
+ 
+down_left, down_right = st.columns(2)
+with down_left:
+	# 데이터 시각화 - 한년별 만족도
+	grade_mean = (
+		df_selection.groupby("학년").mean().reset_index()
+	)
 
-fig_classes_mean = px.bar(
-	classes_mean,
-	x = '학년반',
-	y = '만족도',
-	title = "<b>학급별 만족도 결과</b>",
-	color_discrete_sequence=["#0083B8"] * len(classes_mean),
-	template="plotly_white"
-)
+	fig_grade_mean = px.bar(
+		grade_mean,
+		x = '학년',
+		y = '만족도',
+		title = "<b>학년별 만족도 결과</b>",
+		# color = 'country',
+		color_discrete_sequence=["#0083B8"] * len(grade_mean),
+		template="plotly_white"
+	)
 
-st.plotly_chart(fig_classes_mean)
+	st.plotly_chart(fig_grade_mean)
 
-# 워드클라우드
-word_clud = make_worcloud(df)
+with down_right:
+	# 데이터 시각화 - 한년별 만족도
+	classes_mean = (
+		df.groupby("학년반").mean().reset_index()
+	)
 
-fig = plt.figure()
-# plt.title('학부모 응답 워드클라우드')
-plt.imshow(word_clud, interpolation="bilinear")
-plt.axis("off")
-plt.show()
-st.pyplot(fig)
+	fig_classes_mean = px.bar(
+		classes_mean,
+		x = '학년반',
+		y = '만족도',
+		title = "<b>학급별 만족도 결과</b>",
+		color_discrete_sequence=["#0083B8"] * len(classes_mean),
+		template="plotly_white"
+	)
+
+	st.plotly_chart(fig_classes_mean)
+
+
 
