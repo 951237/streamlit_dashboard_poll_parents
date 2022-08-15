@@ -111,7 +111,7 @@ st.markdown("---")
 
 # st.dataframe(df_selection)		# 페이지에 데이터프레임 표시하기
 
-# 화면 분할 
+# 화면 분할 - 상단
 up_left, up_right = st.columns(2)
 with up_left:
 	# 만족도 현황
@@ -142,7 +142,7 @@ with up_right:
 	plt.show()
 	st.pyplot(fig)
  
- 
+ # 화면분할 - 하단
 down_left, down_right = st.columns(2)
 with down_left:
 	# 데이터 시각화 - 한년별 만족도
