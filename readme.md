@@ -7,6 +7,8 @@
 - ### 화면분할 크기 맞추기
   - 그래프와 워드클라우드 이미지가 어울리지 않음.
 - ### 그래프 Y축의 영역 설정 
+- ### 데이터베이스 적용하기
+  - 데이터베이스에 데이터 저장하기
 
 ## <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/pencil.svg" width="25" height="25"> 작업일지
 - ### 220814_streamlit ver1.0 완성
@@ -35,4 +37,3 @@
 - 워드클라우드
 
 ## <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/image.svg" width="25" height="25"> 미리보기
-![미리보기](img/preview.png)
