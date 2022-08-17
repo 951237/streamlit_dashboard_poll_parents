@@ -9,6 +9,9 @@
 - ### 그래프 Y축의 영역 설정 
 - ### 데이터베이스 적용하기
   - 데이터베이스에 데이터 저장하기
+    - DB Browser for SQlite 이용하여 저장하기
+  - 데이터 불러오기
+
 
 ## <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/pencil.svg" width="25" height="25"> 작업일지
 - ### 220814_streamlit ver1.0 완성
