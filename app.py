@@ -111,73 +111,34 @@ st.markdown("---")
 
 # st.dataframe(df_selection)		# 페이지에 데이터프레임 표시하기
 
-# 화면 분할 - 상단
-up_left, up_right = st.columns(2)
-with up_left:
-	# 만족도 현황
-	grouped_score = (
-		df_selection.groupby('만족도').size().reset_index()
-	)
-	grouped_score.columns = ['만족도', '인원']
 
-	fig_grouped_score = px.bar(
-		grouped_score,
-		x = '만족도',
-		y = '인원',
-		title = "<b>만족도 현황</b>",
-		# color = 'country',
-		color_discrete_sequence=["#0083B8"] * len(grouped_score),
-		template="plotly_white"
-	)
+# 만족도 현황
+grouped_score = (
+	df_selection.groupby('만족도').size().reset_index()
+)
+grouped_score.columns = ['만족도', '인원']
 
-	st.plotly_chart(fig_grouped_score)
-with up_right:
-	# 워드클라우드
-	word_cloud = make_worcloud(df_selection)
+fig_grouped_score = px.bar(
+	grouped_score,
+	x = '만족도',
+	y = '인원',
+	title = "<b>만족도 현황</b>",
+	# color = 'country',
+	color_discrete_sequence=["#0083B8"] * len(grouped_score),
+	template="plotly_white"
+)
 
-	fig = plt.figure()
-	# plt.title('학부모 응답 워드클라우드')
-	plt.imshow(word_cloud, interpolation="bilinear")
-	plt.axis("off")
-	plt.show()
-	st.pyplot(fig)
- 
- # 화면분할 - 하단
-down_left, down_right = st.columns(2)
-with down_left:
-	# 데이터 시각화 - 한년별 만족도
-	grade_mean = (
-		df_selection.groupby("학년").mean().reset_index()
-	)
+st.plotly_chart(fig_grouped_score)
 
-	fig_grade_mean = px.bar(
-		grade_mean,
-		x = '학년',
-		y = '만족도',
-		title = "<b>학년별 만족도 결과</b>",
-		# color = 'country',
-		color_discrete_sequence=["#0083B8"] * len(grade_mean),
-		template="plotly_white"
-	)
+# 워드클라우드
+word_cloud = make_worcloud(df_selection)
 
-	st.plotly_chart(fig_grade_mean)
-
-with down_right:
-	# 데이터 시각화 - 한년별 만족도
-	classes_mean = (
-		df.groupby("학년반").mean().reset_index()
-	)
-
-	fig_classes_mean = px.bar(
-		classes_mean,
-		x = '학년반',
-		y = '만족도',
-		title = "<b>학급별 만족도 결과</b>",
-		color_discrete_sequence=["#0083B8"] * len(classes_mean),
-		template="plotly_white"
-	)
-
-	st.plotly_chart(fig_classes_mean)
+fig = plt.figure()
+# plt.title('학부모 응답 워드클라우드')
+plt.imshow(word_cloud, interpolation="bilinear")
+plt.axis("off")
+plt.show()
+st.pyplot(fig)
 
 
 
