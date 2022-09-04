@@ -1,10 +1,8 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-from konlpy.tag import Okt
 from collections import Counter
 import matplotlib.pyplot as plt
-from konlpy.tag import Kkma
 from wordcloud import WordCloud
 
 # data.csv 파일구조(칼럼이름)
