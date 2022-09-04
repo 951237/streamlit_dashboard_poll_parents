@@ -23,7 +23,7 @@ st.markdown(
 
 		html, body, [class*="css"]  {
 		font-family: 'Noto Sans KR';
-		font-size: 48px;
+		font-size: 15px;
 		}
     </style>
 
