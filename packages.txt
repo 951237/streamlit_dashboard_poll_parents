@@ -1,2 +1,3 @@
-sudo apt-get install language-pack-ko
-sudo apt-get install korean*
+language-pack-ko
+korean*
+fonts-unfonts-core
