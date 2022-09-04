@@ -35,15 +35,43 @@ def get_csvfile():
 # 워드클라우드 말뭉치 만들기
 def make_worcloud(df):
 	df_wordcloud = df.dropna(subset=['학부모 의견'])
-	words = ' '.join(df_wordcloud['학부모 의견'])
-	processed_words = ' '.join([word for word in words.split()])
-
-	my_stopwords = '비 더 도도 도 명 것 날 때 명 수 보 그 분 그 알 비 시 마 만 못 늘'
-	my_stopwords = set(my_stopwords.split(' '))
-
-	font="AppleGothic"
-	word_cloud = WordCloud(font_path= font, stopwords=my_stopwords, background_color='white', width=800, height=640, max_font_size=300).generate(processed_words)
+	lst_lines = list(df_wordcloud['학부모 의견'])
+    
+	line = " ".join(lst_lines)
  
+	okt = Okt()
+	line = okt.pos(line)
+
+	# 명사 또는 형용사인 단어만 리스트에 담기
+	lst_result = []
+
+	for word, tag in line:
+		if tag in ['Noun', 'Adjective']:
+			lst_result.append(word)
+	# 제외할 단어 추가
+	my_stopwords = '비 더 도도 도 명 것 날 때  명 수 보 그 분 그 알 비 시 마 만 못 늘'
+	my_stopwords = set(my_stopwords.split(' '))
+ 
+	# 불용어를 제외한 단어만 남기기
+	lst_result = [word for word in lst_result if not word in my_stopwords]
+	
+ 	#가장 많이 나온 단어 100개 저장
+	counts = Counter(lst_result)
+	# print(counts,'\n'*3)
+
+	tags = counts.most_common(100)
+	tags = dict(tags)
+ 
+	font="AppleGothic"
+	word_cloud = WordCloud(
+		font_path = font,
+		background_color="white",
+		width = 1000,
+		height = 1000,
+		max_font_size=300
+	)
+ 
+	word_cloud = word_cloud.generate_from_frequencies(tags)
 	return word_cloud
  
 df = get_csvfile()		# 데이터 프레임 생성
@@ -83,42 +111,34 @@ st.markdown("---")
 
 # st.dataframe(df_selection)		# 페이지에 데이터프레임 표시하기
 
-# ----- 칼럼 나누기
-a_col_11, a_col_12 = st.columns(2)
 
-with a_col_11:
-	# 만족도 현황
-	st.subheader("만족도 현황")
-	grouped_score = (
-		df_selection.groupby('만족도').size().reset_index()
-	)
-	grouped_score.columns = ['만족도', '인원']
+# 만족도 현황
+grouped_score = (
+	df_selection.groupby('만족도').size().reset_index()
+)
+grouped_score.columns = ['만족도', '인원']
 
-	fig_grouped_score = px.bar(
-		grouped_score,
-		x = '만족도',
-		y = '인원',
-		# title = "<b>만족도 현황</b>",
-		# color = 'country',
-		color_discrete_sequence=["#0083B8"] * len(grouped_score),
-		template="plotly_white"
-	)
+fig_grouped_score = px.bar(
+	grouped_score,
+	x = '만족도',
+	y = '인원',
+	title = "<b>만족도 현황</b>",
+	# color = 'country',
+	color_discrete_sequence=["#0083B8"] * len(grouped_score),
+	template="plotly_white"
+)
 
-	st.plotly_chart(fig_grouped_score, use_container_width=True)
-    
-with a_col_12:
-	# 워드클라우드
-	st.subheader("워드클라우드")
-	word_cloud = make_worcloud(df_selection)
+st.plotly_chart(fig_grouped_score)
 
-	fig = plt.figure()
-	# plt.title('학부모 응답 워드클라우드')
-	plt.imshow(word_cloud, interpolation="bilinear")
-	plt.axis("off")
-	plt.show()
-	st.pyplot(fig, use_container_width=True)
+# 워드클라우드
+word_cloud = make_worcloud(df_selection)
 
-
+fig = plt.figure()
+# plt.title('학부모 응답 워드클라우드')
+plt.imshow(word_cloud, interpolation="bilinear")
+plt.axis("off")
+plt.show()
+st.pyplot(fig)
 
 
 
