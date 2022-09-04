@@ -1,0 +1,2 @@
+한국어*
+fonts-unfonts-core
