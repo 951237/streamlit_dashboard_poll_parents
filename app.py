@@ -4,6 +4,9 @@ import streamlit as st
 from collections import Counter
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
+import matplotlib
+
+matplotlib.rcParams['font.family'] ='Malgun Gothic'
 
 # data.csv 파일구조(칼럼이름)
 	# col0 : 시간, 	col1 : 참관여부, 	col2 : 학년, 
@@ -17,29 +20,6 @@ st.set_page_config(
     page_icon = ":bar_chart:",							# 브라우저 파비콘
     layout = "wide"										# 레이아웃
     )
-
-st.markdown(
-        """
-        <style>
-	@font-face {
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/notosanskr/v13/PbykFmXiEBPT4ITbgNA5Cgm203Tq4JJWq209pU0DPdWuqxJFA4GNDCBYtw.0.woff2)
-    format("woff2");
-}
-
-		html, body, [class*="css"]  {
-		font-family: 'Noto Sans KR';
-		font-size: 15px;
-		}
-    </style>
-
-    """,
-        unsafe_allow_html=True,
-    )
-
 
 # csv 파일 불러오기
 def get_csvfile():
