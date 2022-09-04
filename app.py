@@ -9,6 +9,15 @@ from wordcloud import WordCloud
 	# col0 : 시간, 	col1 : 참관여부, 	col2 : 학년, 
 	# col3 : 반, 		col4: 만족도, 		col5:학부모 의견
 
+
+
+# streamlit 페이지 생성
+st.set_page_config(
+    page_title='학부모공개수업 설문결과 대시보드',		# 브라우저 탭 제목
+    page_icon = ":bar_chart:",							# 브라우저 파비콘
+    layout = "wide"										# 레이아웃
+    )
+
 st.markdown(
         """
         <style>
@@ -31,12 +40,6 @@ st.markdown(
         unsafe_allow_html=True,
     )
 
-# streamlit 페이지 생성
-st.set_page_config(
-    page_title='학부모공개수업 설문결과 대시보드',		# 브라우저 탭 제목
-    page_icon = ":bar_chart:",							# 브라우저 파비콘
-    layout = "wide"										# 레이아웃
-    )
 
 # csv 파일 불러오기
 def get_csvfile():
