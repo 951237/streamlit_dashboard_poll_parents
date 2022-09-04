@@ -14,6 +14,8 @@
 
 
 ## <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/pencil.svg" width="25" height="25"> 작업일지
+- ### 220904_stremalit cloud 배포
+  - 기존의 형태소 분석 제외하여 코드를 경량화 함.
 - ### 220814_streamlit ver1.0 완성
   - 학년별 평점, 학급별 평점 그래프, 만족도 현황
   - 워드클라우드 완성

@@ -9,6 +9,28 @@ from wordcloud import WordCloud
 	# col0 : 시간, 	col1 : 참관여부, 	col2 : 학년, 
 	# col3 : 반, 		col4: 만족도, 		col5:학부모 의견
 
+st.markdown(
+        """
+        <style>
+	@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosanskr/v13/PbykFmXiEBPT4ITbgNA5Cgm203Tq4JJWq209pU0DPdWuqxJFA4GNDCBYtw.0.woff2)
+    format("woff2");
+}
+
+		html, body, [class*="css"]  {
+		font-family: 'Noto Sans KR';
+		font-size: 48px;
+		}
+    </style>
+
+    """,
+        unsafe_allow_html=True,
+    )
+
 # streamlit 페이지 생성
 st.set_page_config(
     page_title='학부모공개수업 설문결과 대시보드',		# 브라우저 탭 제목
@@ -39,8 +61,8 @@ def make_worcloud(df):
 	my_stopwords = '비 더 도도 도 명 것 날 때 명 수 보 그 분 그 알 비 시 마 만 못 늘'
 	my_stopwords = set(my_stopwords.split(' '))
 
-	font="AppleGothic"
-	word_cloud = WordCloud(font_path= font, stopwords=my_stopwords, background_color='white', width=800, height=640, max_font_size=300).generate(processed_words)
+	# font="Noto Sans Kr"
+	word_cloud = WordCloud(stopwords=my_stopwords, background_color='white', width=800, height=640, max_font_size=300).generate(processed_words)
  
 	return word_cloud
  
