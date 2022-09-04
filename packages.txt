@@ -1,2 +1,2 @@
-language-pack-ko
-korean*
+sudo apt-get install language-pack-ko
+sudo apt-get install korean*
