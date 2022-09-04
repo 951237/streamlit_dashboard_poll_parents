@@ -1,3 +1,2 @@
 language-pack-ko
 korean*
-fonts-unfonts-core
