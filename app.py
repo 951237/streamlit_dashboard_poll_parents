@@ -54,7 +54,7 @@ def make_worcloud(df):
 		max_font_size=300
     )
  
-	word_cloud = word_cloud.generate_from_frequencies(processed_words)
+	word_cloud = word_cloud.generate(processed_words)
  
 	return word_cloud
  
