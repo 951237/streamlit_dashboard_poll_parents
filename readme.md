@@ -4,8 +4,6 @@
 - 학부모 설문 결과를 다양한 형태로 시각화 하기
 
 ## <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/clipboard-check.svg" width="25" height="25"> TODO
-- ### 화면분할 크기 맞추기
-  - 그래프와 워드클라우드 이미지가 어울리지 않음.
 - ### 그래프 Y축의 영역 설정 
 - ### 데이터베이스 적용하기
   - 데이터베이스에 데이터 저장하기
@@ -14,6 +12,8 @@
 
 
 ## <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/pencil.svg" width="25" height="25"> 작업일지
+- ### 220907_화면의 크기에 맞게 자동으로 화면 분할
+  - 설정에 화면크기에 맞게 자동 크기 조절가능함.
 - ### 220904_stremalit cloud 배포
   - 기존의 형태소 분석 제외하여 코드를 경량화 함.
 - ### 220814_streamlit ver1.0 완성
