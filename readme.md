@@ -4,6 +4,11 @@
 - 학부모 설문 결과를 다양한 형태로 시각화 하기
 
 ## <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/clipboard-check.svg" width="25" height="25"> TODO
+- ### 학년선택시 남녀 비율 에러 처리하기
+  - 전체에서는 오류가 없음. 학년을 선택하면 오류 발생
+- ### 워드클라우드 한글 나타나게 설정하기
+  - 검색했으나 보이지 않음.
+  - 클라우드 서비스에 한글 설정 기능 찾기
 - ### 그래프 Y축의 영역 설정 
 - ### 데이터베이스 적용하기
   - 데이터베이스에 데이터 저장하기
