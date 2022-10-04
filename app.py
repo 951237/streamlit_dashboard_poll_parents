@@ -44,9 +44,9 @@ def make_worcloud(df):
 	my_stopwords = '비 더 도도 도 명 것 날 때 명 수 보 그 분 그 알 비 시 마 만 못 늘'
 	my_stopwords = set(my_stopwords.split(' '))
 
-	# font="AppleGothic"
+	font="./font/NanumGothic.ttf"
 	word_cloud = WordCloud(
-		# font_path=font,
+		font_path=font,
 		stopwords=my_stopwords, 
 		background_color='white', 
 		width=800, 
